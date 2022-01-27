@@ -1,6 +1,8 @@
 import "./style.css";
 import "./initial-page";
 import imageLocation from './restaurant.jpg';
+import { loadContactTab} from "./contact";
+
 
 const buildTab = (() => {
     const contentDiv = document.querySelector('#content');
@@ -42,10 +44,15 @@ const changeTab = (() => {
     
     
     function change(e) {
-        document.querySelector('#tab').innerHTML = '';
-        
-        console.log(`lol yeah ${e.target.textContent}`);
+        if (e.target.classList[0] === 'btn') {
+            
+            document.querySelector('#tab').innerHTML = '';
 
+            if (e.target.textContent === 'Contact') loadContactTab(); 
+
+        } else return;
+
+        
     };
 
 })();
