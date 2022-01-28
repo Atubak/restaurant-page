@@ -1,21 +1,20 @@
 import "./style.css";
-import "./initial-page";
-import imageLocation from './restaurant.jpg';
-import { loadContactTab} from "./contact";
+import {loadHomeTab} from "./initial-page";
+import {loadContactTab} from "./contact";
+import {loadMenuTab} from "./menu";
 
+loadHomeTab();
 
 const buildTab = (() => {
-    const contentDiv = document.querySelector('#content');
-
-
-    let tabDiv = document.createElement('div');
+    const body = document.querySelector('body');
+    
+    
     let buttonDiv = document.createElement('div');
     let btn1 = document.createElement('button');
     let btn2 = document.createElement('button');
     let btn3 = document.createElement('button');
-    let img = new Image();
-
-    tabDiv.id = 'tab';
+    
+    buttonDiv.id = 'buttons';
     btn1.classList = 'btn';
     btn2.classList = 'btn';
     btn3.classList = 'btn';
@@ -25,16 +24,13 @@ const buildTab = (() => {
     btn1.innerHTML = 'Home';
     btn2.innerHTML = 'Menu';
     btn3.innerHTML = 'Contact';
-    img.src = imageLocation;
-
-
+    
+    
     buttonDiv.appendChild(btn1);
     buttonDiv.appendChild(btn2);
     buttonDiv.appendChild(btn3);
-    tabDiv.appendChild(img);
     
-    document.getElementById('initial').appendChild(buttonDiv);
-    contentDiv.appendChild(tabDiv);
+    body.appendChild(buttonDiv);
 })();
 
 
@@ -46,10 +42,11 @@ const changeTab = (() => {
     function change(e) {
         if (e.target.classList[0] === 'btn') {
             
-            document.querySelector('#tab').innerHTML = '';
+            document.querySelector('#content').innerHTML = '';
 
             if (e.target.textContent === 'Contact') loadContactTab(); 
-
+            if (e.target.textContent === 'Home') loadHomeTab();
+            if (e.target.textContent === 'Menu') loadMenuTab();
         } else return;
 
         
